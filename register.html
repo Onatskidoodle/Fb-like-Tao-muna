@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tao Muna - Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #3498db;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .link a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Create Your Account</h2>
+        <form action="profile.html" method="get">
+            <input type="text" name="fullname" placeholder="Full Name" required>
+            <input type="text" name="contact" placeholder="Contact Number" required>
+            <input type="text" name="skills" placeholder="Your Skills (e.g. Mason, Welder)" required>
+            <textarea name="experience" placeholder="Work Experience" rows="4" required></textarea>
+            <input type="file" name="photo" accept="image/*">
+            <input type="password" name="password" placeholder="Create Password" required>
+            <button type="submit">Register</button>
+        </form>
+        <div class="link">
+            Already have an account? <a href="index.html">Log In</a>
+        </div>
+    </div>
+
+</body>
+</html>
