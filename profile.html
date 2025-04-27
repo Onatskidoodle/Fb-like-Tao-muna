@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tao Muna - Editable Profile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background-color: #f0f2f5;
+    }
+    .profile-container {
+      background: white;
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border: 2px solid #3498db;
+    }
+    .info {
+      margin: 10px 0;
+    }
+    .buttons button {
+      margin: 10px 5px;
+      padding: 10px 20px;
+      border: none;
+      background: #3498db;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .buttons button:hover {
+      background: #2980b9;
+    }
+    input[type="text"], textarea {
+      width: 80%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    input[type="file"] {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="profile-container">
+  <img id="profilePic" src="profile-placeholder.jpg" alt="Profile Picture" class="profile-pic">
+  
+  <div>
+    <input type="file" id="fileInput" accept="image/*" onchange="changePicture()">
+  </div>
+
+  <h2><input type="text" id="name" value="Juan Dela Cruz"></h2>
+
+  <div class="info">
+    <strong>Contact:</strong><br>
+    <input type="text" id="contact" value="0917-123-4567">
+  </div>
+
+  <div class="info">
+    <strong>Skills:</strong><br>
+    <input type="text" id="skills" value="Masonry, Carpentry, Electrical">
+  </div>
+
+  <div class="info">
+    <strong>Work Experience:</strong><br>
+    <textarea id="experience">5 Years Construction Experience</textarea>
+  </div>
+
+  <div class="buttons">
+    <button onclick="saveProfile()">Save Changes</button>
+    <button>Look for Jobs</button>
+    <button>Post a Job</button>
+    <button>Join a Crew</button>
+  </div>
+</div>
+
+<script>
+  function changePicture() {
+    const fileInput = document.getElementById('fileInput');
+    const profilePic = document.getElementById('profilePic');
+    
+    const file = fileInput.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        profilePic.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  function saveProfile() {
+    alert("Profile saved successfully!");
+    // In real application: save to database
+  }
+</script>
+
+</body>
+</html>
