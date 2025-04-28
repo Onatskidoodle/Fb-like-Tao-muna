@@ -1,89 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tao Muna - Login</title>
-    <style>
-        /* Basic reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-            margin: 0;
-        }
-
-        .container {
-            text-align: center;
-            background-color: white;
-            padding: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            width: 90%;
-            max-width: 400px;
-        }
-
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #2980b9;
-        }
-
-        .link {
-            margin-top: 15px;
-            font-size: 14px;
-            color: #3498db;
-        }
-
-        .link:hover {
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TaoMuna Login</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #f0f2f5;
+      font-family: Arial, sans-serif;
+    }
+    .login-box {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      width: 300px;
+      text-align: center;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      max-height: 80px; /* collapsed state */
+      position: relative;
+      cursor: pointer;
+    }
+    .login-box.expanded {
+      max-height: 400px; /* expanded state */
+      cursor: default;
+    }
+    .login-box h2 {
+      margin: 0;
+    }
+    .login-form {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none; /* prevent interaction when hidden */
+    }
+    .login-box.expanded .login-form {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .login-form input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+    }
+    .login-form button {
+      padding: 10px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .login-form button:hover {
+      background: #45a049;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 18px;
+      color: #666;
+      cursor: pointer;
+      display: none;
+    }
+    .login-box.expanded .close-btn {
+      display: block;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Welcome to Tao Muna</h1>
-        <form action="profile.html" method="get">
-            <input type="text" id="email" name="email" placeholder="Enter your email or phone number" required><br>
-            <input type="password" id="password" name="password" placeholder="Enter your password" required><br>
-            <button type="submit">Log In</button>
-        </form>
-        <a href="register.html" class="link">Create New Account</a>
-    </div>
+<div class="login-box" id="loginBox">
+  <div class="close-btn" id="closeBtn">&times;</div>
+  <h2 id="loginTitle">Login</h2>
+  <div class="login-form" id="loginForm">
+    <input type="text" id="phoneInput" placeholder="Phone Number">
+    <input type="password" placeholder="Password">
+    <button>Sign In</button>
+  </div>
+</div>
+
+<script>
+  const loginBox = document.getElementById('loginBox');
+  const loginForm = document.getElementById('loginForm');
+  const phoneInput = document.getElementById('phoneInput');
+  const closeBtn = document.getElementById('closeBtn');
+  const loginTitle = document.getElementById('loginTitle');
+
+  loginBox.addEventListener('click', function(event) {
+    if (!loginBox.classList.contains('expanded') && event.target !== closeBtn) {
+      loginBox.classList.add('expanded');
+      setTimeout(() => {
+        phoneInput.focus();
+      }, 400); // wait until box is expanded then focus
+    }
+  });
+
+  closeBtn.addEventListener('click', function(event) {
+    event.stopPropagation(); // prevent box from expanding again
+    loginBox.classList.remove('expanded');
+  });
+</script>
 
 </body>
 </html>
